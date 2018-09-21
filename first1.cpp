@@ -37,7 +37,7 @@ void *thread_sum5(void *arg) {
 int main(void) {
   int i;
   pthread_t thread1, thread2, thread3, thread4, thread5;
-  
+
   if ( pthread_create( &thread1, NULL, thread_sum1, NULL) ) {
     cout << "error creating thread."<<endl;
     return -1;
@@ -58,13 +58,10 @@ int main(void) {
     cout << "error creating thread."<<endl;
     return -1;
   }
-  
-
  if ( pthread_join (thread5, NULL ) ) {
     cout <<"error joining thread."<<endl;
     return -1;
   }
   cout << "Our sum is " << total_sum << endl;
   return 0;
-
 }
