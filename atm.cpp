@@ -27,15 +27,18 @@ int main(int argc, char *argv[])
   founder_transactions = "";
   acc1_transactions = "";
   acc2_transactions = "";
-  if(inputFile.isOpen())
+  string throwaway_string = "";
+  if(inputFile.is_open())
   {
-    getline(inputFile);
+    getline(inputFile, throwaway_string);
     getline(inputFile, num_founder_transactions);
     getline(inputFile, founder_transactions);
+    getline(inputFile, throwaway_string);
     getline(inputFile, num_acc1_transactions);
     getline(inputFile, acc1_transactions);
+    getline(inputFile, throwaway_string);
     getline(inputFile, num_acc2_transactions);
     getline(inputFile, acc2_transactions);
-    
+
   }
 }
