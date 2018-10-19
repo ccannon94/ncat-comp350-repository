@@ -40,8 +40,8 @@ void *thread_sum(void *thread_input)
 
 int main(int argc, char *argv[])
 {
-  ifstream inputFile(argv[0]);
-  numthreads = atoi(argv[1]);
+  ifstream inputFile(argv[1]);
+  numthreads = atoi(argv[2]);
   thread_ids = new pthread_t[numthreads];
   string arraySizeString = "";
   if(inputFile.is_open())
