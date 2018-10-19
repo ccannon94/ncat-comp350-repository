@@ -68,12 +68,18 @@ void *thread_founder(void *arg)
       {
         transaction_amount_string << transaction[j];
       }
-      transaction_amount = stoi(transaction_amount_string);
+      transaction_amount_string >> transaction_amount;
 
       deposit(transaction_amount);
     }else if(transaction[0] == 'W')
     {
+      for(int j = 0; j < transaction.size(); ++j)
+      {
+        transaction_amount_string << transaction[j];
+      }
+      transaction_amount_string >> transaction_amount;
 
+      deposit(transaction_amount);
     }
   }
 }
@@ -105,12 +111,18 @@ void *thread_acc1(void *arg)
       {
         transaction_amount_string << transaction[j];
       }
-      transaction_amount = stoi(transaction_amount_string);
+      transaction_amount_string >> transaction_amount;
 
       deposit(transaction_amount);
     }else if(transaction[0] == 'W')
     {
+      for(int j = 0; j < transaction.size(); ++j)
+      {
+        transaction_amount_string << transaction[j];
+      }
+      transaction_amount_string >> transaction_amount;
 
+      deposit(transaction_amount);
     }
   }
 }
@@ -142,12 +154,18 @@ void *thread_acc2(void *arg)
       {
         transaction_amount_string << transaction[j];
       }
-      transaction_amount = stoi(transaction_amount_string);
+      transaction_amount_string >> transaction_amount;
 
       deposit(transaction_amount);
     }else if(transaction[0] == 'W')
     {
+      for(int j = 0; j < transaction.size(); ++j)
+      {
+        transaction_amount_string << transaction[j];
+      }
+      transaction_amount_string >> transaction_amount;
 
+      withdrawal(transaction_amount);
     }
   }
 }
@@ -181,5 +199,10 @@ int main(int argc, char *argv[])
     pthread_create(&thread_ids[0], NULL, thread_founder, NULL);
     pthread_create(&thread_ids[1], NULL, thread_acc1, NULL);
     pthread_create(&thread_ids[2], NULL, thread_acc2, NULL);
+
+    pthread_join(thread_ids[0], NULL);
+    pthread_join(thread_ids[1], NULL);
+    pthread_join(thread_ids[2], NULL);
   }
+  return 0;
 }
