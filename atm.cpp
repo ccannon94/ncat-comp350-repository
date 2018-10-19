@@ -29,6 +29,13 @@ int main(int argc, char *argv[])
   acc2_transactions = "";
   if(inputFile.isOpen())
   {
+    getline(inputFile);
+    getline(inputFile, num_founder_transactions);
+    getline(inputFile, founder_transactions);
+    getline(inputFile, num_acc1_transactions);
+    getline(inputFile, acc1_transactions);
+    getline(inputFile, num_acc2_transactions);
+    getline(inputFile, acc2_transactions);
     
   }
 }
