@@ -16,6 +16,21 @@ string founder_transactions;
 string acc1_transactions;
 string acc2_transactions;
 
+void *thread_founder(void *arg)
+{
+  
+}
+
+void *thread_acc1(void *arg)
+{
+
+}
+
+void *thread_acc2(void *arg)
+{
+
+}
+
 int main(int argc, char *argv[])
 {
   account_balance = 0;
@@ -39,6 +54,5 @@ int main(int argc, char *argv[])
     getline(inputFile, throwaway_string);
     getline(inputFile, num_acc2_transactions);
     getline(inputFile, acc2_transactions);
-
   }
 }
