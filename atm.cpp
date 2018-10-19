@@ -3,6 +3,8 @@
 #include <fstream>
 #include <string>
 #include <cstdlib>
+#include <vector>
+#include <sstream>
 
 using namespace std;
 
@@ -41,17 +43,113 @@ void withdrawal(int withdrawal_amount)
 
 void *thread_founder(void *arg)
 {
-  
+  int num_trans = stoi(num_founder_transactions);
+  string buf;
+  stringstream ss(founder_transactions);
+
+  vector<string> tokens;
+
+  while (ss >> buf)
+  {
+    tokens.push_back(buf);
+  }
+
+  for(int i = 0; i < tokens.size(); ++i)
+  {
+    string transaction = tokens[i];
+    stringstream transaction_amount_string;
+    int transaction_amount = 0;
+    if(transaction[0] == 'Q')
+    {
+      balance_query();
+    }else if(transaction[0] == 'D')
+    {
+      for(int j = 0; j < transaction.size(); ++j)
+      {
+        transaction_amount_string << transaction[j];
+      }
+      transaction_amount = stoi(transaction_amount_string);
+
+      deposit(transaction_amount);
+    }else if(transaction[0] == 'W')
+    {
+
+    }
+  }
 }
 
 void *thread_acc1(void *arg)
 {
+  int num_trans = stoi(num_acc1_transactions);
+  string buf;
+  stringstream ss(acc1_transactions);
 
+  vector<string> tokens;
+
+  while (ss >> buf)
+  {
+    tokens.push_back(buf);
+  }
+
+  for(int i = 0; i < tokens.size(); ++i)
+  {
+    string transaction = tokens[i];
+    stringstream transaction_amount_string;
+    int transaction_amount = 0;
+    if(transaction[0] == 'Q')
+    {
+      balance_query();
+    }else if(transaction[0] == 'D')
+    {
+      for(int j = 0; j < transaction.size(); ++j)
+      {
+        transaction_amount_string << transaction[j];
+      }
+      transaction_amount = stoi(transaction_amount_string);
+
+      deposit(transaction_amount);
+    }else if(transaction[0] == 'W')
+    {
+
+    }
+  }
 }
 
 void *thread_acc2(void *arg)
 {
+  int num_trans = stoi(num_acc2_transactions);
+  string buf;
+  stringstream ss(acc2_transactions);
 
+  vector<string> tokens;
+
+  while (ss >> buf)
+  {
+    tokens.push_back(buf);
+  }
+
+  for(int i = 0; i < tokens.size(); ++i)
+  {
+    string transaction = tokens[i];
+    stringstream transaction_amount_string;
+    int transaction_amount = 0;
+    if(transaction[0] == 'Q')
+    {
+      balance_query();
+    }else if(transaction[0] == 'D')
+    {
+      for(int j = 0; j < transaction.size(); ++j)
+      {
+        transaction_amount_string << transaction[j];
+      }
+      transaction_amount = stoi(transaction_amount_string);
+
+      deposit(transaction_amount);
+    }else if(transaction[0] == 'W')
+    {
+
+    }
+  }
 }
 
 int main(int argc, char *argv[])
@@ -80,8 +178,8 @@ int main(int argc, char *argv[])
     getline(inputFile, num_acc2_transactions);
     getline(inputFile, acc2_transactions);
 
-    pthread_create(&thread_ids[0], NULL, thread_founder, (void *) args);
-    pthread_create(&thread_ids[1], NULL, thread_acc1, (void *) args);
-    pthread_create(&thread_ids[2], NULL, thread_acc2, (void *) args);
+    pthread_create(&thread_ids[0], NULL, thread_founder, NULL);
+    pthread_create(&thread_ids[1], NULL, thread_acc1, NULL);
+    pthread_create(&thread_ids[2], NULL, thread_acc2, NULL);
   }
 }
